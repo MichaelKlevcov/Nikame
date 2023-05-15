@@ -1,7 +1,6 @@
 import java.util.Random;
 
-import static Utils.Utils.generateText;
-import static Utils.Utils.incrementCounter;
+import static utils.Utils.*;
 
 public class Main {
 
@@ -12,57 +11,39 @@ public class Main {
             texts[i] = generateText("abc", 3 + random.nextInt(3));
         }
 
-        Thread palindrome = new Thread(()); -> {
-             for (String text : texts) {
-                 boolean b1 = !isSameChar(text);
-                 boolean b = b1;
-                 if (isPalindrome(text)) &&) {
+        Thread palindrome = new Thread(() -> {
+            for (String text : texts) {
+                if (isPalindrome(text) && !isSameChar(text)) {
                     incrementCounter(text.length());
                 }
             }
-        }}
-
-    private static boolean isSameChar(String text) {
-        return false;
-    }
-
-    private static boolean isPalindrome(String text) {
-        return false;
-    }
-
-    ;
+        });
         palindrome.start();
 
-        Thread sameChar = new Thread(()) -> {
-        String[] texts;
-        for (String text : texts) {
-               if (isSomeChar(text))  {
-                   incrementCounter(text.length());
-               }
+        Thread sameChar = new Thread(() -> {
+            for (String text : texts) {
+                if (isSameChar(text)) {
+                    incrementCounter(text.length());
+                }
             }
-        }
-
-    private boolean isSomeChar(String text) {
-        return false;
-    }
-};
+        });
         sameChar.start();
 
-        Thread ascendingOrder = new Thread(()) -> {
-             for (String text : texts) {
-               if (isSomeChar(text)) && isAscendingOrder(text)) {
-                   instantCounter(text.length());
-               }
-             }
-        }};
+        Thread ascendingOrder = new Thread(() -> {
+            for (String text : texts) {
+                if (!isSameChar(text) && isAscendingOrder(text)) {
+                    incrementCounter(text.length());
+                }
+            }
+        });
         ascendingOrder.start();
 
         sameChar.join();
         ascendingOrder.join();
         palindrome.join();
 
-        System.out.println("красивых слов с длиной 3" + counter 3);
-        System.out.println("красивых слов с длиной 4" + counter 4);
-        System.out.println("красивых слов с длиной 5" + counter 5);
+        System.out.println("красивых слов длиной 3: " + counter3);
+        System.out.println("красивых слов длиной 4: " + counter4);
+        System.out.println("красивых слов длиной 5: " + counter5);
     }
 }
